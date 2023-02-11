@@ -3,17 +3,35 @@
     margin: 40px;
     height: max-content;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .productItem {
     background-color: white;
-    height: max-content;
-    width: 100%;
+    height: 375px;
+    width: 250px;
 }
 .product::-webkit-scrollbar {
     width: 0px;
 }
-
 .productItemText {
     text-align: center;
-    width: 200px;
+    margin: 3px auto;
+}
+.productItemButton {
+    background-color: #FEBE10;
+    outline: none;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    margin: 10px auto;
+    position: relative;
+    cursor: pointer;
 }

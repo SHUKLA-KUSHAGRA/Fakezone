@@ -6,7 +6,7 @@ function Body() {
     const [products,setProducts] = useState([]);
 
     async function getDataFromApi() {
-        const api = await fetch('https://fakestoreapi.com/products')
+        const api = await fetch('https://api.escuelajs.co/api/v1/products')
             .then(res=>res.json());
         setProducts(api);
         console.log(api);
