@@ -10,7 +10,7 @@ function Header() {
     <div className='header'>
         <div>
             <img
-                style={{width:120,height:40,marginTop:10}}
+                style={{width:"5rem",height:40,marginTop:10}}
                 className="image"
                 src="https://links.papareact.com/f90"
                 alt="logo"

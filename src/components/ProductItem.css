@@ -1,3 +1,19 @@
+.product {
+    background-color: white;
+    margin: 40px;
+    height: max-content;
+    overflow: hidden;
+}
 .productItem {
     background-color: white;
+    height: max-content;
+    width: 100%;
+}
+.product::-webkit-scrollbar {
+    width: 0px;
+}
+
+.productItemText {
+    text-align: center;
+    width: 200px;
 }

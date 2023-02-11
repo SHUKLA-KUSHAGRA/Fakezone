@@ -4,9 +4,7 @@
     display: flex;
     align-items: center;
     gap: 15px;
-}
-.image {
-    padding: 10px;
+    overflow-x: scroll;
 }
 .headerInputContainer {
     flex-grow: 1;
@@ -15,7 +13,6 @@
 .headerInput {
     outline: none;
     padding: 7;
-    margin-left: 10px;
     flex: 1;
 }
 .headerText {
@@ -26,12 +23,18 @@
 .headerBottom {
     background-color: #123456;
     padding: 5px;
-    height: max-content;
     display: flex;
     gap: 20px;
+    overflow-x: scroll;
 }
 .headerBottomText {
     color: white;
     padding-top: 7px;
-    
+    width: fit-content;
+}
+.header::-webkit-scrollbar {
+    width: 0px;
+}
+.headerBottom::-webkit-scrollbar {
+    width: 0px;
 }
