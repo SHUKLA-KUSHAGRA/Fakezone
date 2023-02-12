@@ -3,8 +3,15 @@ import "./Header.css";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import MenuIcon from '@mui/icons-material/Menu';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
+    const cart = useSelector((state) => state.cart.cart);
+    const navigate = useNavigate();
+    const navigateToCart = () => {
+        navigate("/cart");
+    }
   return (
     <>
     <div className='header'>
@@ -28,7 +35,7 @@ function Header() {
             <h4 className='headerText'>Returns</h4>
             <h4 className='headerText'>& orders</h4>
         </div>
-        <div style={{position:'relative'}}>
+        <div onClick={navigateToCart} style={{position:'relative',cursor:'pointer'}}>
             <ShoppingCartIcon style={{color:"white"}}/>
             <span style={{position:'absolute',
                               left:14,
@@ -39,7 +46,9 @@ function Header() {
                               borderRadius:7,
                               textAlign:"center",
                               fontSize:12,
-                              fontWeight:400}}>0</span>
+                              fontWeight:400}}>
+                                {cart.length}
+                              </span>
         </div>
     </div>
     <div className='headerBottom'>
