@@ -4,9 +4,13 @@ import Header from '../components/Header';
 import { decrementQuantity, incrementQuantity, removeFromCart } from '../redux/CartSlice';
 import "./Cart.css";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 
 function Cart() {
   const cart = useSelector((state) => state.cart.cart);
+  const totalPrice = cart.map((item) => item.price*item.quantity).reduce((curr,prev) => curr+prev,0);
+  const charges = (cart.length>0) ? 500 : 0;
+  const discount = (totalPrice<500) ? 0 : 500;
   const dispatch = useDispatch();
   const increaseItem = (item) => {
     dispatch(incrementQuantity(item));
@@ -47,19 +51,47 @@ function Cart() {
         <div className='cartRight'>
           <div>
             <div>
-              <LocationOnIcon/>
+              <LocationOnIcon style={{color:"gray"}}/>
               <div>
                 <p>Select Your Location</p>
                 <p>Please select a location so we can find you!</p>
+                <button className='cartRightButton'>Select Location</button>
               </div>
             </div>
           </div>
           <div>
-
+            <div style={{marginTop:10}}>
+              <LocationOnIcon style={{color:"gray"}}/>
+              <div>
+                <p>Chose Your Saved Location</p>
+                <button className='cartRightButton'>Chose Location</button>
+              </div>
+            </div>
           </div>
           <div>
-
+            <div style={{marginTop:10}}>
+              <ConfirmationNumberIcon style={{color:"gray"}}/>
+              <div>
+                <h4>Select / Apply Coupon</h4>
+                <p>Apply coupons to avail offers on the products</p>
+              </div>
+            </div>
           </div>
+          <div>
+            <div style={{marginTop:10}}>
+              <h3 style={{color:"blue"}}>Total Price : ₹{totalPrice}</h3>
+            </div>
+            <div style={{marginTop:10}}>
+              <h3 style={{color:"blue"}}>Discount : ₹{discount}</h3>
+            </div>
+            <div style={{marginTop:10}}>
+              <h3 style={{color:"blue"}}>Extra Charges : ₹{charges}</h3>
+            </div>
+            <div style={{marginTop:10}}>
+              <h3 style={{color:"blue"}}>Grand Total : ₹{totalPrice-discount+charges}</h3>
+            </div>
+          </div>
+          <button className='cartContainerButton' style={{margin:20,color:'white'}}>Place Order</button>
         </div>
       </div>
     </>
