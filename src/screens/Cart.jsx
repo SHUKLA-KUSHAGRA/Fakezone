@@ -1,16 +1,21 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Header from '../components/Header';
-import { decrementQuantity, incrementQuantity, removeFromCart } from '../redux/CartSlice';
+import { clearCart, decrementQuantity, incrementQuantity, removeFromCart } from '../redux/CartSlice';
 import "./Cart.css";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer ,toast } from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 
 function Cart() {
   const cart = useSelector((state) => state.cart.cart);
   const totalPrice = cart.map((item) => item.price*item.quantity).reduce((curr,prev) => curr+prev,0);
   const charges = (cart.length>0) ? 500 : 0;
   const discount = (totalPrice<500) ? 0 : 500;
+  const orders = [...cart];
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const increaseItem = (item) => {
     dispatch(incrementQuantity(item));
@@ -20,6 +25,19 @@ function Cart() {
   }
   const removeItem = (item) => {
     dispatch(removeFromCart(item));
+  }
+  const notify = () => {
+    toast("Order Placed Successfully!");
+    setTimeout(() => {
+      navigate("/",{
+      state:{
+        orders: orders
+      }
+    })
+    },3500);
+    setTimeout(() => {
+      dispatch(clearCart());
+    },4000);
   }
   return (
     <>
@@ -82,16 +100,23 @@ function Cart() {
               <h3 style={{color:"blue"}}>Total Price : ₹{totalPrice}</h3>
             </div>
             <div style={{marginTop:10}}>
-              <h3 style={{color:"blue"}}>Discount : ₹{discount}</h3>
+              <h3 style={{color:"blue"}}>Extra Charges : ₹{charges}</h3>
             </div>
             <div style={{marginTop:10}}>
-              <h3 style={{color:"blue"}}>Extra Charges : ₹{charges}</h3>
+              <h3 style={{color:"blue"}}>Discount : -₹{discount}</h3>
             </div>
             <div style={{marginTop:10}}>
               <h3 style={{color:"blue"}}>Grand Total : ₹{totalPrice-discount+charges}</h3>
             </div>
           </div>
-          <button className='cartContainerButton' style={{margin:20,color:'white'}}>Place Order</button>
+          { cart.length>0 ? 
+          <>
+          <button className='cartContainerButton' style={{margin:20,color:'white'}} onClick={notify}>Place Order</button>
+          <ToastContainer position='top-center' theme='dark'/>
+          </> :
+          <>
+          </>
+          }
         </div>
       </div>
     </>
