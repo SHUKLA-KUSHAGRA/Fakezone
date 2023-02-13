@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../redux/CartSlice';
 import "./ProductItem.css";
+import ProductItemCarousel from './ProductItemCarousel';
 
 function ProductItem({item}) {
   const [dispimg,setdispimg] = useState(true);
@@ -17,13 +18,14 @@ function ProductItem({item}) {
     <div className='product'>
     <div className='productItem'>
         {dispimg ? 
-          ( <div onClick={()=>{setdispimg(!dispimg)}}>
-              <img style={{width:250,height:250}}src={item.category.image} alt="product"/>
+          ( <div>
+          {console.log(item.images)}
+              <ProductItemCarousel first={item.images[0]} second={item.images[1]} third={item.images[2]}/>
               <p className="productItemText">{item.title}</p>
               <p className="productItemText">₹ {item.price}</p> 
             </div>
           ) :
-          ( <div onClick={()=>{setdispimg(!dispimg)}}>
+          ( <div>
               <h3 className="productItemText" style={{padding:"25px"}}>Description</h3>
               <p className="productItemText" style={{padding:"30px"}}>{item.description}</p>
             </div>
@@ -33,7 +35,7 @@ function ProductItem({item}) {
           ) : (
             <button className="productItemButton" onClick={()=>addItemToCart(item)}>Add to Cart</button>
           )}
-          <button className="productItemButton">Buy Now</button>
+          <button className="productItemButton" onClick={()=>{setdispimg(!dispimg)}}>{dispimg ? "Details..." : "Go Back"}</button>
     </div>
     </div>
   );

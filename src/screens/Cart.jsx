@@ -8,6 +8,7 @@ import ConfirmationNumberIcon from "@mui/icons-material/ConfirmationNumber";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer ,toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
+import ProductItemCarousel from '../components/ProductItemCarousel';
 
 function Cart() {
   const cart = useSelector((state) => state.cart.cart);
@@ -49,8 +50,8 @@ function Cart() {
           }
           {cart.map((item,idx) => (
             <div className='cartContainer'>
-              <div>
-                <img src={item.category.image} style={{width:230,height:250}} alt="product"/>
+              <div style={{width:250,minHeight:250}}>
+                <ProductItemCarousel first={item.images[0]} second={item.images[1]} third={item.images[2]}/>
               </div>
               <div className='cartContainerText'>
                 <h2 className='cartContainerItemText'>{item.title} <br/> <span>( ₹{item.price * item.quantity} )</span></h2>
