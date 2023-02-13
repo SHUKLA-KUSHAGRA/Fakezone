@@ -11,7 +11,7 @@
 }
 .productItem {
     background-color: white;
-    height: 375px;
+    height: 350px;
     width: 250px;
 }
 .product::-webkit-scrollbar {

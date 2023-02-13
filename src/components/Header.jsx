@@ -24,7 +24,7 @@ function Header() {
             />
         </div>
         <div className='headerInputContainer'>
-            <input className='headerInput' type="text" placeholder='Search Items or Products'/>
+            <input className='headerInput' type="text" placeholder='Search By Category'/>
             <SearchOutlinedIcon style={{color:"white",marginLeft:4,marginTop:2}}/>
         </div>
         <div>

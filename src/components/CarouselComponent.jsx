@@ -5,7 +5,7 @@ import { Carousel } from "react-responsive-carousel";
 function CarouselComponent() {
   return (
     <div>
-        <Carousel autoPlay={true} infiniteLoop={true}>
+        <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false}>
           <div>
             <img src="https://m.media-amazon.com/images/I/616SqgdNgLL._SX3000.jpg" alt='banner'/>
           </div>
